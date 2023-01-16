@@ -30,13 +30,18 @@ export default function ResponsiveDrawer(props) {
         <div>
 
             <Toolbar />
+
+            <Divider />
             <Divider />
             <Divider />
             <List>
+
                 {mainItems.map((text, index) => (
                     <ListItem button key={text.id}  onClick={() => navigate(text.route)} disablePadding>
                         <ListItemButton >
-                            <ListItemIcon sx={{color: 'rgba(255, 255, 255, 0.7)'}}>
+                            <ListItemIcon sx={{color: 'rgba(255, 255, 255, 0.7)','&:hover, &:focus': {
+                                    bgcolor: 'rgba(255, 255, 255, 0.08)',
+                                }}}>
                                 {text.icon}
                             </ListItemIcon>
                             <ListItemText primary={text.label} />
@@ -52,6 +57,7 @@ export default function ResponsiveDrawer(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
+        <div  className="container-fluid">
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar
@@ -107,6 +113,7 @@ export default function ResponsiveDrawer(props) {
 
             </Box>
         </Box>
+        </div>
 
     );
 }

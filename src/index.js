@@ -7,18 +7,18 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Compare from './components/headers/header3'
 import Company from './components/headers/header2'
 import Header from './components/headers/header'
-// import { ThemeProvider } from '@mui/material/styles';
-// import { dashboardTheme } from './pages/dashbordTheme';
+import Profile from './components/headers/header4'
+import Home from './components/home'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // <ThemeProvider theme={dashboardTheme}>
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />}>
+            <Route path="/" element={<Home />}>
                 <Route path="index" element={<Header />} />
                 <Route path="companies" element={<Company />} />
                 <Route path="compare" element={<Compare />} />
-                {/*<Route path="profile" element={<Hosting />} />*/}
+                <Route path="profile" element={<Profile />} />
                 {/*<Route path="logout" element={<MachineLearning />} />*/}
 
             </Route>

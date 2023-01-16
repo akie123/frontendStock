@@ -21,6 +21,13 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Menu from "@mui/material/Menu";
+import Compare1 from "../../pages/compare";
+import Cipla from "../../pages/cipla";
+import Leyland from "../../pages/leyland";
+import Tata from "../../pages/tata";
+import Motors from "../../pages/motors";
+
+
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -33,6 +40,11 @@ function Header(props) {
     };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const [value, setValue] = React.useState('1');
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     return (
@@ -152,6 +164,14 @@ function Header(props) {
                 </Toolbar>
             </AppBar>
 
+            <div style={{backgroundColor:'white',color:'black'}}>
+
+
+
+                    <Compare1/>
+
+
+            </div>
         </React.Fragment>
     );
 }

@@ -20,16 +20,52 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import Axios from 'axios';
 import Menu from "@mui/material/Menu";
+
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import Bse from '../../pages/bse';
-
+import Nse from '../../pages/bse';
+import Bse from '../../pages/nse';
+import { useState, useEffect } from "react";
+import axios from "axios";
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
+
+    const[data,setData] = useState();
+    const [openi,setOpeni] = useState([]);
+    const [close,setClose] = useState([]);
+    const [ high,setHigh] = useState([]);
+    const [ low,setLow] = useState([]);
+    const [ date,setDate] = useState([]);
+    const [ span,setSpan] = useState(30);
+    useEffect(() => {
+      const getdata = async() =>
+      {
+          let res = await axios.get('https://back123-q87o.onrender.com/api/stock/getstock/stock=nse/span=30')
+          res = res.data.stock;
+          let arr1=[],arr2=[],arr3=[],arr4=[],arr5=[];
+        for(let i=0;i<span;i++)
+        {
+            arr1.push(res[i].Open);
+            arr2.push(res[i].Close);
+            arr3.push(res[i].Low);
+            arr4.push(res[i].High);
+            arr5.push(res[i].Date);
+        }
+     setOpeni(arr1)
+     setClose(arr2)
+     setLow(arr3)
+     setHigh(arr4)
+     setDate(arr5)
+
+      }
+      getdata();
+
+    },[]);
     const { onDrawerToggle } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -44,6 +80,8 @@ function Header(props) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+
 
     return (
         <>
@@ -171,8 +209,16 @@ function Header(props) {
             </AppBar>
 
         </React.Fragment>
-            <div style={{backgroundColor:'white',color:'black',height:'100vh'}}>
-                <Bse/>
+            <div style={{backgroundColor:'white',color:'black'}}>
+
+
+                { value=="1" &&
+                    <Bse/>
+                }
+                {
+                    value=="2" &&
+                    <Nse/>
+                }
             </div>
             </>
     );

@@ -21,6 +21,13 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Menu from "@mui/material/Menu";
+import Reliance from "../../pages/reliance";
+import Cipla from "../../pages/cipla";
+import Leyland from "../../pages/leyland";
+import Tata from "../../pages/tata";
+import Motors from "../../pages/motors";
+
+
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -33,6 +40,11 @@ function Header(props) {
     };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const [value, setValue] = React.useState('1');
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     return (
@@ -152,15 +164,39 @@ function Header(props) {
                 </Toolbar>
             </AppBar>
             <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
-                <Tabs value={0} textColor="inherit">
-                    <Tab label="Reliance" />
-                    <Tab label="Leyland" />
-                    <Tab label="Cipla" />
-                    <Tab label="Tata Steel" />
-                    <Tab label="Eicher Motors" />
+                <Tabs  textColor="inherit" onChange={handleChange} value={value}>
+                    <Tab label="Reliance" value="1" />
+                    <Tab label="Leyland" value="2"/>
+                    <Tab label="Cipla" value="3"/>
+                    <Tab label="Tata Steel" value="4"/>
+                    <Tab label="Eicher Motors" value="5"/>
 
                 </Tabs>
             </AppBar>
+            <div style={{backgroundColor:'white',color:'black'}}>
+
+
+                { value=="1" &&
+                    <Reliance/>
+                }
+                {
+                    value=="2" &&
+                    <Cipla/>
+                }
+                {
+                    value=="3" &&
+                    <Leyland/>
+                }
+                {
+                    value=="4" &&
+                    <Tata/>
+                }
+                {
+                    value=="5" &&
+                    <Motors/>
+                }
+
+            </div>
         </React.Fragment>
     );
 }
